@@ -1,0 +1,18 @@
+{
+  "generator-bigdatr-startr": {
+    "promptValues": {
+      "name": "schedule",
+      "description": "",
+      "version": "0.0.0",
+      "license": "UNLICENSED",
+      "private": false,
+      "author": "Allan Hortle",
+      "username": "allanhortle",
+      "nameConstant": "SCHEDULE",
+      "port": 3000,
+      "cognito": false,
+      "prerender": false,
+      "segment": false
+    }
+  }
+}
