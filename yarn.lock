@@ -3489,7 +3489,7 @@ is-plain-obj@^1.0.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/is-plain-obj/-/is-plain-obj-1.1.0.tgz#71a50c8429dfca773c92a390a4a03b39fcd51d3e"
 
-is-plain-object@^2.0.3:
+is-plain-object@^2.0.3, is-plain-object@^2.0.4:
   version "2.0.4"
   resolved "https://registry.yarnpkg.com/is-plain-object/-/is-plain-object-2.0.4.tgz#2c163b3fafb1b606d9d17928f05c2a1c38e07677"
   dependencies:
@@ -4661,6 +4661,13 @@ package-json@^4.0.0:
 pako@~0.2.0:
   version "0.2.9"
   resolved "https://registry.yarnpkg.com/pako/-/pako-0.2.9.tgz#f3f7522f4ef782348da8161bad9ecfd51bf83a75"
+
+parcels@0.2.0:
+  version "0.2.0"
+  resolved "https://registry.yarnpkg.com/parcels/-/parcels-0.2.0.tgz#12d6d0568ab8bceedcf23dcd55c1315dd5a82d29"
+  dependencies:
+    immutable "^3.8.1"
+    unmutable "^0.1.0"
 
 parse-glob@^3.0.4:
   version "3.0.4"
@@ -6511,6 +6518,12 @@ unique-temp-dir@^1.0.0:
     mkdirp "^0.5.1"
     os-tmpdir "^1.0.1"
     uid2 "0.0.3"
+
+unmutable@^0.1.0:
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/unmutable/-/unmutable-0.1.0.tgz#d5a3c32c549fc62cbded40014418a3099967835c"
+  dependencies:
+    is-plain-object "^2.0.4"
 
 unpipe@~1.0.0:
   version "1.0.0"

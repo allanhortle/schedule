@@ -36,6 +36,7 @@
     "moment": "^2.18.1",
     "numeral": "^2.0.6",
     "obtuse": "^0.6.0",
+    "parcels": "0.2.0",
     "prop-types": "^15.5.7",
     "react": "^15.5.4",
     "react-dom": "^15.3.2",

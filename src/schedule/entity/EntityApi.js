@@ -6,7 +6,7 @@ import request from '../util/request';
 
 
 const Api = EntityApi(ApplicationSchema, {
-    core: () => request.get('/hortles.json').then(payload => ({tree: payload.data}))
+    core: (data) => Promise.resolve(data)
 });
 
 export const {
