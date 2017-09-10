@@ -9,12 +9,7 @@ import MainPage from 'schedule/components/MainPage';
 
 
 export default (): React.Element<any> => {
-    return <BrowserRouter>
-        <Switch>
-            <Route exact path="/" component={MainPage} />
-            <Route component={ErrorHandler}/>
-        </Switch>
-    </BrowserRouter>;
+    return <MainPage/>
 };
 
 

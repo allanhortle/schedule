@@ -4,7 +4,6 @@ dist
 .DS_Store
 node_modules
 .nyc_output
-docs
 coverage
 tmp.config.json
 s3_website.yml

@@ -11,7 +11,6 @@ function setItem(key: string, data: any): any {
     return () => Identity(data)
         .map(data => JSON.stringify(data))
         .map((dataString) => {
-            console.log(data, dataString);
             localStorage.setItem(key, dataString);
             return data;
         })

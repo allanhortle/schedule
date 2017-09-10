@@ -14,9 +14,9 @@
   },
   "private": false,
   "scripts": {
-    "build": "rm -rf ./dist/* && NODE_ENV=production webpack",
-    "build-dev": "rm -rf ./dist/* && NODE_ENV=development webpack",
-    "watch": "NODE_ENV=development webpack-dev-server --content-base dist/ --inline --hot",
+    "build": "rm -rf ./docs/* && NODE_ENV=production webpack",
+    "build-dev": "rm -rf ./docs/* && NODE_ENV=development webpack",
+    "watch": "NODE_ENV=development webpack-dev-server --content-base docs/ --inline --hot",
     "ava": "NODE_ENV=test ava",
     "check-coverage": "NODE_ENV=test nyc check-coverage --branches 100.0  --functions 100.0 --lines 100.0",
     "docs": "jsdoc -c jsdoc.json",
@@ -39,6 +39,7 @@
     "parcels": "0.2.0",
     "prop-types": "^15.5.7",
     "react": "^15.5.4",
+    "react-day-picker": "^6.1.0",
     "react-dom": "^15.3.2",
     "react-redux": "^5.0.4",
     "react-router": "^4.1.0",
@@ -119,7 +120,7 @@
     ],
     "exclude": [
       "src/**/*-test.js",
-      "dist"
+      "docs"
     ],
     "reporter": [
       "lcov",

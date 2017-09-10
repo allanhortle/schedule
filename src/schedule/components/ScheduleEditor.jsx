@@ -2,13 +2,13 @@
 
 import React from 'react';
 import Parcel from 'parcels';
-import Obtuse, {Box, Grid, Column} from 'obtuse';
+import {Box, Grid, Column, Text} from 'obtuse';
 import {Label, Input as StampyInput} from 'stampy';
 import StepRecord from 'schedule/entity/StepRecord';
 
 function Input(props: Object): React.Element<> {
-    const {name, parcel} = props;
-    return <StampyInput {...parcel.get(name).spread()}/>
+    const {name, parcel, type = 'text'} = props;
+    return <StampyInput type={type} {...parcel.get(name).spread()}/>
 }
 
 function Step(props: Object): StepRecord {
@@ -41,28 +41,23 @@ class ScheduleEditor extends React.Component {
 
         const {push, pop, shift, unshift, swap} = listMethods(steps);
 
-        console.log(steps);
         return <div>
-            ScheduleEditor
-
             <Label>Name</Label>
             <Input name="name" parcel={parcel} />
+            <Label>Start Time</Label>
+            <Input name="startTime" type="time" parcel={parcel} />
 
 
-            <button className="Button Button-inline" onClick={() => push(Step())}>Push</button>
-            <button className="Button Button-inline" onClick={() => pop()}>Pop</button>
-            <button className="Button Button-inline" onClick={() => shift()}>Shift</button>
-            <button className="Button Button-inline" onClick={() => unshift(Step())}>Unshift</button>
-            <button className="Button Button-inline" onClick={() => swap(0, 1)}>Swap 0 and 1</button>
+            <button className="Button Button-inline" onClick={() => push(Step())}>New Step</button>
 
             {steps
                 .map((step, index) => {
                     const {swapPrev, swapNext, insert, remove} = listMethods(steps);
 
-                    return <Box modifier="padding" key={index}>
-                        <label className="Label">Step {index + 1}</label>
+                    return <Box className="marginBottom" key={index}>
+                        <Text modifier="strong">Step {index + 1}</Text>
                         <Grid modifier="auto">
-                            <Column modifier="always gutter">
+                            <Column modifier="always">
                                 <Label>Name</Label>
                                 <Input name="name" parcel={step} />
                             </Column>
@@ -70,12 +65,12 @@ class ScheduleEditor extends React.Component {
                                 <Label>Offset</Label>
                                 <Input name="offset" parcel={step} />
                             </Column>
-                            <Column modifier="always gutter shrink">
+                            <Column modifier="always shrink">
                                 <Label>{"\u00A0"}</Label>
-                                <button className="Button Button-inline" onClick={() => swapPrev(index)}>Prev</button>
-                                <button className="Button Button-inline" onClick={() => swapNext(index)}>Next</button>
-                                <button className="Button Button-inline" onClick={() => insert(index, Step())}>Insert</button>
-                                <button className="Button Button-inline" onClick={() => remove(index)}>Delete</button>
+                                <button className="Button Button-inline" onClick={() => insert(index, Step())}>Add</button>
+                                <button className="Button Button-inline" onClick={() => swapPrev(index)}>↑</button>
+                                <button className="Button Button-inline" onClick={() => swapNext(index)}>↓</button>
+                                <button className="Button Button-inline" onClick={() => remove(index)}>x</button>
                             </Column>
                         </Grid>
                     </Box>;

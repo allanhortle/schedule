@@ -18,7 +18,69 @@ $bruce-zindexList: (
 @include ObtuseButton;
 @include ObtuseCheckbox;
 @include ObtuseChoice;
-@include ObtuseDayPicker;
+@include ObtuseDayPicker() {
+    &-wrapper {
+        position: relative;
+    }
+    &-Caption {
+        text-align: center;
+    }
+    &-NavBar {
+        width: 100%;
+        position: absolute;
+    }
+    &-NavButton {
+        &:focus {
+            outline: none;
+        }
+        cursor: pointer;
+        padding: 0 1rem;
+        &--prev:before {
+            content: '<';
+            float: left;
+        }
+        &--next:before {
+            float: right;
+            content: '>'
+        }
+    }
+    &-Body {
+        border-left: 1px solid grey(80);
+        border-top: 1px solid grey(80);
+        display: table;
+        table-layout: fixed;
+        width: 100%;
+    }
+    &-Weekdays {
+        display: table;
+        table-layout: fixed;
+        width: 100%;
+    }
+    &-Week,
+    &-WeekdaysRow {
+        display: table-row;
+    }
+
+    &-Day,
+    &-Weekday {
+        width: 100%;
+        display: table-cell;
+    }
+
+    &-Day {
+        height: 5rem;
+        // text-align: center;
+        //
+        // border: 1px solid grey(80);
+        //
+        border-bottom: 1px solid grey(80);
+        border-right: 1px solid grey(80);
+
+        &--outside {
+            color: grey(70);
+        }
+    }
+}
 @include ObtuseDropdown;
 @include ObtuseGrid;
 @include ObtuseIcon;

@@ -79,7 +79,7 @@ const development = {
               }
     ),
     output: {
-        path: './dist',
+        path: './docs',
         filename: '[name].js',
         publicPath: '/',
         libraryTarget: 'commonjs2'
