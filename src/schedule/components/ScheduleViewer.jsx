@@ -32,6 +32,7 @@ class ScheduleEditor extends React.Component {
         }
 
         return <div>
+            <Button onClick={() => console.log(schedule.toIcal())}>Download</Button>
             <DayPicker
                 enableOutsideDays
                 renderDay={renderDay}

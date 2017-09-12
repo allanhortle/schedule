@@ -3,6 +3,7 @@ import {List, Map} from 'immutable';
 import Moment from 'moment';
 import BaseRecord from 'schedule/entity/BaseRecord';
 import StepRecord from 'schedule/entity/StepRecord';
+import Ical from 'ical-generator';
 
 // /(\d*)([dhms])/g
 
@@ -43,5 +44,16 @@ export default class ScheduleRecord extends BaseRecord({
 
             })
             .groupBy(ii => ii.get('date').format('YYYY-MM-DD'))
+    }
+    toIcal() {
+        const events = this.steps
+            .map(step => ({
+                start: date,
+                summary: name,
+                timestamp: date
+            }))
+            .toArray();
+
+        return ical({events}).toString();
     }
 }

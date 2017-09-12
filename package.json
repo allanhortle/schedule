@@ -33,6 +33,7 @@
     "enty": "^0.37.1",
     "fronads": "^0.10.0",
     "immutable": "^3.8.1",
+    "immutable-ics": "^0.4.0",
     "moment": "^2.18.1",
     "numeral": "^2.0.6",
     "obtuse": "^0.6.0",
