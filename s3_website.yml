@@ -1,0 +1,17 @@
+s3_id: <%= ENV['S3_ID'] %>
+s3_secret: <%= ENV['S3_SECRET'] %>
+s3_bucket: allanhortle.com
+site: public
+gzip:
+  - .html
+  - .js
+  - .css
+  - .md
+s3_endpoint: ap-southeast-2
+ignore_on_server:
+    - old
+    - 1john
+    - bible
+cloudfront_distribution_id: E1S6XD9ORZQH5W
+cloudfront_wildcard_invalidation: true
+

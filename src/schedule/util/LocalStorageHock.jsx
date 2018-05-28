@@ -1,14 +1,14 @@
 //@flow
 import React from 'react';
-import {ConfigureHock} from 'stampy';
-import {Try, Identity} from 'fronads';
+import Hock from 'stampy/lib/util/Hock';
+import {Try, IdentityFactory} from 'fronads';
 
 function logError(error: Error) {
     console.error(error);
 }
 
 function setItem(key: string, data: any): any {
-    return () => Identity(data)
+    return () => IdentityFactory(data)
         .map(data => JSON.stringify(data))
         .map((dataString) => {
             localStorage.setItem(key, dataString);
@@ -18,19 +18,19 @@ function setItem(key: string, data: any): any {
 }
 
 function getItem(key: string): any {
-    return () => Identity(key)
+    return () => IdentityFactory(key)
         .map(data => localStorage.getItem(data))
         .map(data => JSON.parse(data))
         .value();
 }
 
-export default ConfigureHock(
-    (config) => {
+export default Hock({
+    hock: (config) => {
         return (Component) => {
             class LocalStorageHock extends Component {
                 constructor(props: Object) {
                     super(props);
-                    const {initialState, localStorageKey, constructor} = config(props);
+                    const {initialState, localStorageKey, constructor} = config;
                     const value = Try(getItem(localStorageKey))
                         .leftMap(logError)
                         .map(constructor)
@@ -41,7 +41,7 @@ export default ConfigureHock(
                     };
                 }
                 onChange: Function = (value: Function) => {
-                    const {localStorageKey} = config(this.props);
+                    const {localStorageKey} = config;
                     Try(setItem(localStorageKey, value))
                         .map((value) => this.setState({value}))
                         .leftMap(logError);
@@ -50,7 +50,7 @@ export default ConfigureHock(
                     const {
                         valueProp,
                         onChangeProp
-                    } = config(this.props);
+                    } = config;
 
                     const hockProps: Object = {
                         [valueProp]: this.state.value,
@@ -68,11 +68,11 @@ export default ConfigureHock(
             return LocalStorageHock;
         }
     },
-    () => ({
+    defaultConfig: {
         initialState: undefined,
         constructor: data => data,
         localStorageKey: "LocalStorageHock",
         onChangeProp: 'onChange',
         valueProp: 'value'
-    })
-);
+    }
+});

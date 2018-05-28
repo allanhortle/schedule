@@ -1,6 +1,7 @@
 @import '~bruce/bruce';
-@include bruce-reset();
-@include bruce-box-sizing();
+@import 'config';
+@include BruceReset;
+@include BruceBoxSizing;
 
 $bruce-zindexList: (
     'Select',
@@ -81,29 +82,61 @@ $bruce-zindexList: (
         }
     }
 }
-@include ObtuseDropdown;
-@include ObtuseGrid;
-@include ObtuseIcon;
+
+@include BruceGrid() {
+    &_item {
+        &-paddingMega {
+            border-left: 4rem solid transparent;
+            border-right: 4rem solid transparent;
+        }
+
+        &-paddingKilo {
+            border-left: 2rem solid transparent;
+            border-right: 2rem solid transparent;
+        }
+
+        &-padding {
+            border-left: 1rem solid transparent;
+            border-right: 1rem solid transparent;
+        }
+
+        &-paddingMilli {
+            border-left: .5rem solid transparent;
+            border-right: .5rem solid transparent;
+        }
+    }
+};
+// @include ObtuseDropdown;
+// @include ObtuseIcon;
 @include ObtuseInput;
 @include ObtuseLabel;
-@include ObtuseLink;
-@include ObtuseList;
-@include ObtuseLoader;
-@include ObtuseLogin;
-@include ObtuseMedia;
-@include ObtuseModal;
-@include ObtuseNavigation;
-@include ObtusePagination;
-@include ObtuseProgressBar;
-@include ObtuseSelect;
-@include ObtuseTab;
-@include ObtuseTable;
-@include ObtuseTabSet;
-@include ObtuseTerminal;
+// @include ObtuseLink;
+// @include ObtuseList;
+// @include ObtuseLoader;
+// @include ObtuseLogin;
+// @include ObtuseMedia;
+// @include ObtuseModal;
+// @include ObtuseNavigation;
+// @include ObtusePagination;
+// @include ObtuseProgressBar;
+// @include ObtuseSelect;
+// @include ObtuseTab;
+@include ObtuseTable() {
+    &_headCell {
+        text-align: left;
+        padding: .5rem;
+        font-weight: 700;
+    }
+}
+// @include ObtuseTabSet;
+// @include ObtuseTerminal;
 @include ObtuseText;
-@include ObtuseWrapper;
+// @include ObtuseWrapper;
 
-@include bruce-component-media;
-@include bruce-classes;
-@include bruce-float;
-@include bruce-widths;
+
+@media print {
+    .hide-print {
+        display: none;
+    }
+}
+

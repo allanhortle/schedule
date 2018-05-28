@@ -1,16 +1,21 @@
 /* @flow */
 import {List, Map} from 'immutable';
 import Moment from 'moment';
-import BaseRecord from 'schedule/entity/BaseRecord';
-import StepRecord from 'schedule/entity/StepRecord';
-import Ical from 'ical-generator';
+import BaseRecord from './BaseRecord';
+import StepRecord from './StepRecord';
+import {Perhaps} from 'fronads';
+// import Ical from 'ical-generator';
 
 // /(\d*)([dhms])/g
 
 export default class ScheduleRecord extends BaseRecord({
-    name: null,
-    startTime: "00:00",
-    steps: List()
+    name: 'My Schdedule',
+    startTime: Moment().format("HH:mm"),
+    day: new Date(),
+    steps: List([
+        {name: 'Start', offset: '0d'},
+        {name: 'End', offset: '0d'}
+    ])
 }) {
     constructor(props) {
         super(props);
@@ -19,14 +24,15 @@ export default class ScheduleRecord extends BaseRecord({
     getDateMap(startDate: Date) {
         return this.steps
             .map((step) => {
-                const momentStep = step
-                    .offset
-                    .match(/(\d*)([dhms])/g)
-                    .reduce((rr, time) => {
+                const momentStep = Perhaps(step.offset)
+                    .flatMap(offset => Perhaps(offset.match(/(\d*)([dhms])/g)))
+                    .map(offset => offset.reduce((rr, time) => {
                         const [all, value, unit] = time.match(/(\d*)([dhms])/);
                         rr[unit] = value;
                         return rr;
-                    }, {})
+                    }, {}))
+                    .value()
+                ;
 
                 return step
                     .set('momentOffset', momentStep);
@@ -45,15 +51,15 @@ export default class ScheduleRecord extends BaseRecord({
             })
             .groupBy(ii => ii.get('date').format('YYYY-MM-DD'))
     }
-    toIcal() {
-        const events = this.steps
-            .map(step => ({
-                start: date,
-                summary: name,
-                timestamp: date
-            }))
-            .toArray();
+    // toIcal() {
+    //     const events = this.steps
+    //         .map(step => ({
+    //             start: date,
+    //             summary: name,
+    //             timestamp: date
+    //         }))
+    //         .toArray();
 
-        return ical({events}).toString();
-    }
+    //     return ical({events}).toString();
+    // }
 }

@@ -1,1 +1,0 @@
-module.exports = (branch) => branch.replace(/[^A-Za-z0-9_-]/g, '_');

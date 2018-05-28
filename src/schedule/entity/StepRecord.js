@@ -1,6 +1,6 @@
 /* @flow */
 
-import BaseRecord from 'schedule/entity/BaseRecord';
+import BaseRecord from './BaseRecord';
 
 export default class StepRecord extends BaseRecord({
     name: null,
