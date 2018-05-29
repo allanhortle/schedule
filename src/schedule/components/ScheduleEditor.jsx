@@ -23,9 +23,6 @@ class ScheduleEditor extends React.Component {
             <Label>Start Time</Label>
             <Input type="time" {...parcel.get('startTime').spread()} />
 
-
-            <button className="Button Button-inline" onClick={() => steps.push(newStep)}>New Step</button>
-
             {steps
                 .toArray((step, index) => {
                     return <Box modifier="marginTop" key={index}>
@@ -41,7 +38,7 @@ class ScheduleEditor extends React.Component {
                             </Column>
                             <Column modifier="always shrink">
                                 <Label>{"\u00A0"}</Label>
-                                <button className="Button Button-inline" onClick={() => steps.insert(index + 1, newStep)}>Add</button>
+                                <button className="Button Button-inline" onClick={() => index === steps.size() -1 ? steps.push(newStep) : steps.insert(index + 1, newStep)}>Add</button>
                                 <button className="Button Button-inline" onClick={() => steps.swapPrev(index)}>↑</button>
                                 <button className="Button Button-inline" onClick={() => steps.swapNext(index)}>↓</button>
                                 <button className="Button Button-inline" onClick={() => steps.delete(index)}>x</button>
@@ -49,6 +46,9 @@ class ScheduleEditor extends React.Component {
                         </Grid>
                     </Box>;
                 })}
+
+            <button className="Button Button-inline" onClick={() => steps.push(newStep)}>New Step</button>
+
 
 
         </div>;
