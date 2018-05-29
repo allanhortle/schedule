@@ -3,6 +3,11 @@ import React from 'react';
 import Hock from 'stampy/lib/util/Hock';
 import {Try, IdentityFactory} from 'fronads';
 
+const safeLocalStorage = typeof localStorage !== 'undefined'
+    ? localStorage
+    : {setItem: () => {}, getItem: () => "{}"}
+
+
 function logError(error: Error) {
     console.error(error);
 }
@@ -11,7 +16,7 @@ function setItem(key: string, data: any): any {
     return () => IdentityFactory(data)
         .map(data => JSON.stringify(data))
         .map((dataString) => {
-            localStorage.setItem(key, dataString);
+            safeLocalStorage.setItem(key, dataString);
             return data;
         })
         .value();
@@ -19,7 +24,7 @@ function setItem(key: string, data: any): any {
 
 function getItem(key: string): any {
     return () => IdentityFactory(key)
-        .map(data => localStorage.getItem(data))
+        .map(data => safeLocalStorage.getItem(data))
         .map(data => JSON.parse(data))
         .value();
 }
